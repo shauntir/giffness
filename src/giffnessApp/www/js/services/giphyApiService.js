@@ -8,11 +8,13 @@
     //Move this to a config file and get values from another service
     self.baseURI = 'http://api.giphy.com/';
     self.apiURIPath = 'v1/gifs/';
-    self.apiKeyParam = '?api_key=dc6zaTOxFJmzC';
+    self.apiKeyParam = '?api_key=dc6zaTOxFJmzC&limit=3';
 
     //Private helper method to build request URI
-    function buildApiRequest(requestParameterType, additionalParams) {
-      var fullURI = self.baseURI + self.apiURIPath + requestParameterType + self.apiKeyParam + additionalParams;
+    function buildApiRequest(requestParameterType) {
+      var fullURI = self.baseURI + self.apiURIPath + requestParameterType + self.apiKeyParam;
+
+      return fullURI;
     }
 
     //Get Trending Gifs
@@ -26,6 +28,7 @@
         })
         .error(function() {
           console.log("Error trying to request trending gifs!");
+
           deferred.reject();
         });
 
@@ -36,6 +39,6 @@
       getTrendingGifs: getTrendingGifs
     };
 
-  }
+  };
 
 })();
