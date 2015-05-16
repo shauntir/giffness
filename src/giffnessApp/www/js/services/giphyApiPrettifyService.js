@@ -1,27 +1,24 @@
 (function() {
   'use strict';
 
-  angular.module('giffnessApp').factory('giphyApiPrettifyService', [giphyApiPrettifyService]);
+  angular.module('giffnessApp').factory('giphyApiPrettifyService', ['uriHelperService', giphyApiPrettifyService]);
 
-  function giphyApiPrettifyService() {
+  function giphyApiPrettifyService(uriHelperService) {
 
-    function getTitleArrayFromUrl(url) {
-      var splitUrl = url.split('/');
-      var titleTextUrlPiece = _.last(splitUrl);
+    function getTitleForGif(data) {
+      var title = uriHelperService.getCapitalizedTitleFromArray(
+          uriHelperService.getTitleArrayFromUrl(data.url));
 
-      return titleTextUrlPiece;
-    }
+      if(title === "") {
+        title = uriHelperService.getCapitalizedTitleFromArray(
+          uriHelperService.getTitleArrayFromUrl(data.source));
+      }
 
-    function getCapitalizedTitleFromArray(titleTextUrlPiece) {
-      var titleSplit = titleTextUrlPiece.split('-');
-      var titleText =
-        _.without(titleSplit, _.last(titleSplit))
-        .map(function(word) {
-          return _.capitalize(word);
-        })
-        .join(' ');
+      if(title === "") {
+        title = "Giffness Gif";
+      }
 
-        return titleText;
+      return title;
     }
 
     //Get Trending Gifs Transformed Pretty Json
@@ -30,7 +27,7 @@
       var prettyJsonReponse =
         _.chain(giphyReponseData.data)
          .map(function(item) {
-           var titleFromUrl = getCapitalizedTitleFromArray(getTitleArrayFromUrl(item.url));
+           var titleFromUrl = getTitleForGif(item);
            return {
              giphyUrl: item.url,
              fixedWidthStillUrl: item.images.fixed_width_still.url,
