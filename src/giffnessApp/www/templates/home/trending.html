@@ -1,18 +1,44 @@
 
 <ion-view ng-controller="TrendingController as viewModel" view-title="Trending">
-
   <ion-content class="padding">
 
-    <div class="list card" ng-repeat="gif in viewModel.trendingGifs">
+    <div ng-repeat="gif in viewModel.trendingGifs">
 
-      <div class="item item-dark item-divider align-text-center">
-        <h2 class="light">{{ gif.title }}</h2>
+      <div ng-click="showGifModal(gif)">
+        <div class="list card">
+          <div class="item item-dark item-divider align-text-center">
+            <h2 class="light">{{ gif.title }}</h2>
+          </div>
+
+          <div class="item item-image">
+            <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" />
+          </div>
+
+          <script id="gif-modal.html" type="text/ng-template">
+            <ion-modal-view>
+              <ion-header-bar class="bar bar-header bar-dark">
+                <h3 class="title">{{ modal.gif.title }}</h3>
+              </ion-header-bar>
+              <ion-content>
+
+                <div ng-click="showGifModal(gif)" class="list card">
+                  <div class="item item-image">
+                    <img ng-src="{{ modal.gif.fixedWidthUrl }}" alt="{{ modal.gif.caption }" />
+                  </div>
+                </div>
+
+              </ion-content>
+
+              <ion-footer-bar class="bar">
+                <div class="button-bar">
+                  <a class="button button-dark button-primary" ng-click="modal.hide()">Close</a>
+                </div>
+              </ion-header-bar>
+
+            </ion-modal-view>
+          </script>
+        </div>
       </div>
-
-      <div class="item item-image">
-        <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" />
-      </div>
-
     </div>
 
   </ion-content>

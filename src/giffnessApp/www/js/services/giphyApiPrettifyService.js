@@ -31,6 +31,7 @@
            return {
              giphyUrl: item.url,
              fixedWidthStillUrl: item.images.fixed_width_still.url,
+             fixedWidthUrl: item.images.fixed_width.url,
              caption: item.caption,
              title: titleFromUrl,
              avatar: item.images.fixed_width_small_still.url
