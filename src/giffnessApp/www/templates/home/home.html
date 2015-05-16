@@ -1,0 +1,18 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-striped tabs-icon-top tabs-color-active-positive">
+
+  <!-- Trending Gifs Tab -->
+  <ion-tab title="Hot" icon-off="ion-arrow-graph-up-right" icon-on="ion-arrow-graph-up-right" ui-sref="home.trending">
+    <ion-nav-view name="trending"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Favourites Gifs Tab -->
+  <ion-tab title="Favourites" icon-off="ion-android-favorite" icon-on="ion-android-favorite" ui-sref="home.favourites">
+    <ion-nav-view name="favourites"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
