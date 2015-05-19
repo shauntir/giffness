@@ -8,7 +8,7 @@
     //Move this to a config file and get values from another service
     self.baseURI = 'http://api.giphy.com/';
     self.apiURIPath = 'v1/gifs/';
-    self.apiKeyParam = '?api_key=dc6zaTOxFJmzC&limit=3';
+    self.apiKeyParam = '?api_key=dc6zaTOxFJmzC';
 
     //Private helper method to build request URI
     function buildApiRequest(requestParameterType) {
@@ -18,9 +18,11 @@
     }
 
     //Get Trending Gifs
-    function getTrendingGifs() {
+    function getTrendingGifs(limit, offset) {
       var requestURI = buildApiRequest('trending');
       var deferred = $q.defer();
+
+      requestURI += '&limit=' + limit + '&offset='+ offset;
 
       $http.get(requestURI)
         .success(function(data) {
