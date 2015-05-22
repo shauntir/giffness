@@ -21,7 +21,7 @@
       return title;
     }
 
-    //Get Trending Gifs Transformed Pretty Json
+    //Get Trending Gifs Transformed Pretty Object
     function getTrendingGifsPretty(giphyReponseData) {
 
       var prettyJsonReponse =
@@ -42,8 +42,29 @@
       return prettyJsonReponse;
     }
 
+    //Get Trending Gifs Transformed Pretty Object
+    function getRandomGifPretty(giphyReponseData) {
+      var prettyJsonReponse =
+        _.chain([giphyReponseData.data])
+         .map(function(item) {
+           var titleFromUrl = getTitleForGif(item);
+           return {
+             giphyUrl: item.url,
+             imageUrl: item.image_url,
+             caption: item.caption,
+             title: titleFromUrl
+           };
+         })
+         .value()
+
+       prettyJsonReponse = _.first(prettyJsonReponse);
+       console.log(prettyJsonReponse);
+      return prettyJsonReponse;
+    }
+
     return {
-      getTrendingGifsPretty: getTrendingGifsPretty
+      getTrendingGifsPretty: getTrendingGifsPretty,
+      getRandomGifPretty: getRandomGifPretty
     };
 
   };

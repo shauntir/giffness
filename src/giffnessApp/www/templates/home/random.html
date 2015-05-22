@@ -1,0 +1,23 @@
+
+<ion-view ng-controller="RandomController as viewModel" view-title="Random">
+  <ion-content class="padding">
+
+    <div>
+      <div class="list card">
+        <div class="item item-dark item-divider align-text-center">
+          <h2 class="light">{{ viewModel.randomGif.title }}</h2>
+        </div>
+
+        <div class="item item-image">
+          <img ng-src="{{ viewModel.randomGif.imageUrl }}" alt="{{ viewModel.randomGif.caption }}" />
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar">
+    <div class="button-bar">
+      <a class="button button-dark button-primary" ng-click="viewModel.getAnotherRandomGif()">Get Another Random Gif</a>
+    </div>
+  </ion-footer-bar>
+</ion-view>

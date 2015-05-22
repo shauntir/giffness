@@ -46,7 +46,27 @@ angular.module('giffnessApp', ['ionic'])
         controller: 'TrendingController'
       }
     }
-  });
+  })
+
+  .state('home.random', {
+      url: '/random',
+      views: {
+        'random': {
+          templateUrl: 'templates/home/random.html',
+          controller: 'RandomController'
+        }
+      }
+    })
+
+  .state('home.search', {
+      url: '/search/:search_term',
+      views: {
+        'search': {
+          templateUrl: 'templates/home/search.html',
+          controller: 'SearchController'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home/trending');

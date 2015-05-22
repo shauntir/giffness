@@ -7,12 +7,21 @@
 
     //Move this to a config file and get values from another service
     self.baseURI = 'http://api.giphy.com/';
+    self.randomBaseURI = 'http://tv.giphy.com/';
     self.apiURIPath = 'v1/gifs/';
     self.apiKeyParam = '?api_key=dc6zaTOxFJmzC';
 
     //Private helper method to build request URI
     function buildApiRequest(requestParameterType) {
-      var fullURI = self.baseURI + self.apiURIPath + requestParameterType + self.apiKeyParam;
+      var fullURI;
+
+      if(requestParameterType === 'random') {
+        fullURI = self.randomBaseURI;
+      }
+      else {
+        fullURI = self.baseURI;
+      }
+      fullURI += self.apiURIPath + requestParameterType + self.apiKeyParam;
 
       return fullURI;
     }
@@ -37,8 +46,28 @@
       return deferred.promise;
     }
 
+
+    //Get Random Gif
+    function getRandomGif() {
+      var requestURI = buildApiRequest('random');
+      var deferred = $q.defer();
+      $http.defaults.useXDomain = true;
+      $http.get(requestURI)
+        .success(function(data) {
+          deferred.resolve(data);
+        })
+        .error(function() {
+          console.log("Error trying to request random gifs!");
+
+          deferred.reject();
+        });
+
+      return deferred.promise;
+    }
+
     return {
-      getTrendingGifs: getTrendingGifs
+      getTrendingGifs: getTrendingGifs,
+      getRandomGif: getRandomGif
     };
 
   };
