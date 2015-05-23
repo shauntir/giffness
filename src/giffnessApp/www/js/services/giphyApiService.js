@@ -46,6 +46,25 @@
       return deferred.promise;
     }
 
+    //Search Gifs
+    function searchGifs(searchCriteria, limit, offset) {
+      var requestURI = buildApiRequest('search');
+      var deferred = $q.defer();
+
+      requestURI += '&q=' + searchCriteria + '&limit=' + limit + '&offset='+ offset;
+
+      $http.get(requestURI)
+        .success(function(data) {
+          deferred.resolve(data);
+        })
+        .error(function() {
+          console.log("Error trying to search gifs!");
+
+          deferred.reject();
+        });
+
+      return deferred.promise;
+    }
 
     //Get Random Gif
     function getRandomGif() {
@@ -67,7 +86,8 @@
 
     return {
       getTrendingGifs: getTrendingGifs,
-      getRandomGif: getRandomGif
+      getRandomGif: getRandomGif,
+      searchGifs: searchGifs
     };
 
   };

@@ -1,9 +1,65 @@
 
 <ion-view ng-controller="SearchController as viewModel" view-title="Search">
-  <div class="list list-inset">
-    <label class="item item-input">
-      <i class="icon ion-search placeholder-icon"></i>
-      <input type="text" placeholder="Search">
-    </label>
-  </div>
+  <ion-content class="padding">
+    <form ng-submit="viewModel.searchGifs(searchCriteria)">
+      <div class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="Search Gifs" ng-model="searchCriteria" />
+          </label>
+          <button class="button button-small button-outline button-dark" type="button" ng-click="viewModel.searchGifs(searchCriteria)">Search</button>
+        </div>
+      </div>
+    </form>
+
+    <div ng-show="noSearchResults" class="card">
+      <div class="item item-text-wrap align-text-center">
+        No search results found for: "{{ searchCriteria }}". Please try a search something else.
+      </div>
+    </div>
+    <div ng-repeat="gif in viewModel.Gifs">
+
+      <div ng-click="showGifModal(gif)">
+        <div class="list card">
+          <div class="item item-dark item-divider align-text-center">
+            <h2 class="light">{{ gif.title }}</h2>
+          </div>
+
+          <div class="item item-image">
+            <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" loading-image-spinner />
+
+            <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
+          </div>
+
+          <script id="gif-modal.html" type="text/ng-template">
+            <ion-modal-view>
+              <ion-header-bar class="bar bar-header bar-dark">
+                <h3 class="title">{{ modal.gif.title }}</h3>
+              </ion-header-bar>
+              <ion-content>
+
+                <div ng-click="showGifModal(gif)" class="list card">
+                  <div class="item item-image">
+                    <img ng-src="{{ modal.gif.fixedWidthUrl }}" alt="{{ modal.gif.caption }" loading-image-spinner />
+
+                    <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
+                  </div>
+                </div>
+
+              </ion-content>
+
+              <ion-footer-bar class="bar">
+                <div class="button-bar">
+                  <a class="button button-dark button-primary" ng-click="modal.hide()">Close</a>
+                </div>
+              </ion-footer-bar>
+
+            </ion-modal-view>
+          </script>
+        </div>
+      </div>
+    </div>
+    <button class="button button-full button-large button-dark icon-right ion-chevron-right" type="button" ng-show="hasSearch" ng-click="viewModel.getMoreGifs(searchCriteria)">Load More</button>
+  </ion-content>
 </ion-view>
