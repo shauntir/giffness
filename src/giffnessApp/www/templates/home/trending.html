@@ -11,7 +11,9 @@
           </div>
 
           <div class="item item-image">
-            <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" />
+            <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" loading-image-spinner />
+
+            <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
           </div>
 
           <script id="gif-modal.html" type="text/ng-template">
@@ -23,7 +25,9 @@
 
                 <div ng-click="showGifModal(gif)" class="list card">
                   <div class="item item-image">
-                    <img ng-src="{{ modal.gif.fixedWidthUrl }}" alt="{{ modal.gif.caption }" />
+                    <img ng-src="{{ modal.gif.fixedWidthUrl }}" alt="{{ modal.gif.caption }" loading-image-spinner />
+
+                    <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
                   </div>
                 </div>
 
