@@ -24,7 +24,8 @@
         _.takeWhile(titleSplit, function(value) {
           //Assume any piece that contains a number is the hash of the url part.
           //TODO: Refactor to be hash based check?
-          return !value.match(/^[0-9]/);
+          //Regex taken from: http://stackoverflow.com/questions/4440286/numbers-not-allowed-0-9-regex-expression-in-javascript
+          return value.match(/^([^0-9]*)$/);
         })
         .map(function(word) {
           return _.capitalize(word);

@@ -57,8 +57,7 @@
          })
          .value()
 
-       prettyJsonReponse = _.first(prettyJsonReponse);
-       console.log(prettyJsonReponse);
+      prettyJsonReponse = _.first(prettyJsonReponse);
       return prettyJsonReponse;
     }
 
