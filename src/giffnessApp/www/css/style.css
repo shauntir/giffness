@@ -3,3 +3,10 @@
 .align-text-center {
   text-align: center;
 }
+
+
+
+.spinner svg {
+  width: 65% !important;
+  height: 40% !important;
+}

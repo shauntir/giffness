@@ -9,11 +9,14 @@
         </div>
 
         <div class="item item-image">
-          <img ng-src="{{ viewModel.randomGif.imageUrl }}" alt="{{ viewModel.randomGif.caption }}" />
-        </div>
+          <img ng-src="{{ viewModel.randomGif.imageUrl }}" alt="{{ viewModel.randomGif.caption }}" loading-image-spinner />
 
+          <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
+        </div>
       </div>
     </div>
+
+
   </ion-content>
   <ion-footer-bar class="bar">
     <div class="button-bar">

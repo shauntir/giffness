@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('giffnessApp').controller('RandomController', ['giphyApiService', 'giphyApiPrettifyService', randomController]);
+  angular.module('giffnessApp').controller('RandomController', ['$scope', 'giphyApiService', 'giphyApiPrettifyService', randomController]);
 
-  function randomController(giphyApiService, giphyApiPrettifyService) {
+  function randomController($scope, giphyApiService, giphyApiPrettifyService) {
     var viewModel = this;
 
     var requestRandomGif = function() {
