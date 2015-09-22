@@ -30,7 +30,6 @@
       $scope.modal.show();
     };
 
-
     $scope.getMoreGifs = function() {
       offset += limit;
       giphyApiService
