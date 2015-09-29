@@ -4,7 +4,9 @@
   text-align: center;
 }
 
-
+.ion-icon-white {
+  color: #ffffff;
+}
 
 .spinner svg {
   width: 65% !important;

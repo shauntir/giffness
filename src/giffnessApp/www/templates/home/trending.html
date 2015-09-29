@@ -3,17 +3,24 @@
   <ion-content class="padding">
 
     <div ng-repeat="gif in viewModel.trendingGifs">
-
-      <div ng-click="showGifModal(gif)">
         <div class="list card">
-          <div class="item item-dark item-divider align-text-center">
+          <div class="item item-positive item-divider align-text-center" ng-click="showGifModal(gif)">
             <h2 class="light">{{ gif.title }}</h2>
           </div>
 
-          <div class="item item-image">
+          <div class="item item-image" ng-click="showGifModal(gif)">
             <img ng-src="{{ gif.fixedWidthStillUrl }}" alt="{{ gif.caption }" loading-image-spinner />
 
             <p class="image-loading-spinner"><ion-spinner icon="ripple"></ion-spinner></p>
+          </div>
+
+          <div class="item tabs tabs-secondary">
+            <a class="tab-item  align-text-center" href="#">
+              <i class="icon ion-android-download ion-icon-white"></i>
+            </a>
+            <a class="tab-item align-text-center" href="#">
+              <i class="icon ion-android-share-alt ion-icon-white"></i>
+            </a>
           </div>
 
           <script id="gif-modal.html" type="text/ng-template">
@@ -43,7 +50,7 @@
           </script>
         </div>
       </div>
-    </div>
+
     <ion-infinite-scroll on-infinite="getMoreGifs()"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
