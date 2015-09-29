@@ -6,8 +6,8 @@
   function giphyApiService($http, $q, $ionicLoading) {
 
     //Move this to a config file and get values from another service
-    self.baseURI = 'http://api.giphy.com/';
-    self.randomBaseURI = 'http://tv.giphy.com/';
+    self.baseURI = 'https://api.giphy.com/';
+    self.randomBaseURI = 'https://tv.giphy.com/';
     self.apiURIPath = 'v1/gifs/';
     self.apiKeyParam = '?api_key=dc6zaTOxFJmzC';
 
