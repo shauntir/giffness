@@ -20,6 +20,10 @@
         $scope.modal = modal;
       });
 
+    viewModel.shareGif = function(randomGif) {
+      utilitiesHelperService.shareGif(randomGif);
+    };
+    
     $scope.showGifModal = function(item) {
       $scope.modal.gif = item;
       $scope.modal.show();

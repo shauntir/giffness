@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('giffnessApp').controller('RandomController', ['$scope', 'giphyApiService', 'giphyApiPrettifyService', '$cordovaSocialSharing', randomController]);
+  angular.module('giffnessApp').controller('RandomController', ['$scope', 'giphyApiService', 'giphyApiPrettifyService', 'utilitiesHelperService', randomController]);
 
-  function randomController($scope, giphyApiService, giphyApiPrettifyService, $cordovaSocialSharing) {
+  function randomController($scope, giphyApiService, giphyApiPrettifyService, utilitiesHelperService) {
     var viewModel = this;
 
     var requestRandomGif = function() {
@@ -19,15 +19,7 @@
     };
 
     viewModel.shareGif = function(randomGif) {
-      ionic.Platform.ready(function() {
-        $cordovaSocialSharing
-            .share(null, "Hi! I just wanted to share this awesome gif with you.", randomGif.imageUrl, null)
-            .then(function(result) {
-              // Move along, nothing to see here.
-            }, function(err) {
-              // An error occured. Show a message to the user
-            });
-      });
+      utilitiesHelperService.shareGif(randomGif);
     };
 
     requestRandomGif();
