@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('giffnessApp').controller('SearchController', ['$scope', '$ionicModal', 'giphyApiService', 'giphyApiPrettifyService', searchController]);
+  angular.module('giffnessApp').controller('SearchController', ['$scope', '$ionicModal', 'giphyApiService', 'giphyApiPrettifyService', 'utilitiesHelperService',searchController]);
 
-  function searchController($scope, $ionicModal, giphyApiService, giphyApiPrettifyService) {
+  function searchController($scope, $ionicModal, giphyApiService, giphyApiPrettifyService, utilitiesHelperService) {
     var viewModel = this;
     var limit = 5;
     var offset = 0;
@@ -23,7 +23,7 @@
     viewModel.shareGif = function(randomGif) {
       utilitiesHelperService.shareGif(randomGif);
     };
-    
+
     $scope.showGifModal = function(item) {
       $scope.modal.gif = item;
       $scope.modal.show();

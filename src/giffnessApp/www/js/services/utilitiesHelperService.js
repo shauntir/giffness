@@ -6,9 +6,15 @@
   function utilitiesHelperService($cordovaSocialSharing) {
 
     function shareGif(gifModel) {
+      var gifUrl = gifModel.imageUrl;
+      if(gifUrl === undefined)
+      {
+        gifModel = gifModel.fixedWidthStillUrl;
+      }
+
       ionic.Platform.ready(function() {
         $cordovaSocialSharing
-            .share(null, "Hi! I just wanted to share this awesome gif with you.", gifModel.imageUrl, null)
+            .share(null, "Hi! I just wanted to share this awesome gif with you.", gifUrl, null)
             .then(function(result) {
               // Move along, nothing to see here.
             }, function(err) {
