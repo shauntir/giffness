@@ -69,4 +69,7 @@
   <access origin="*" />
   <allow-intent href="*" />
   <allow-navigation href="*" />
+  <platform name="wp8">
+  		<preference name="Fullscreen" value="true" />
+	</platform>
 </widget>
