@@ -2,13 +2,11 @@
 <ion-view ng-controller="SearchController as viewModel" view-title="Search">
   <ion-content class="padding">
     <form ng-submit="viewModel.searchGifs(searchCriteria)">
-      <div class="list">
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper">
+      <div class="list list-inset">
+          <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="search" placeholder="Search Gifs" ng-model="searchCriteria" />
           </label>
-          <button class="button button-small button-outline button-dark" type="button" ng-click="viewModel.searchGifs(searchCriteria)">Search</button>
         </div>
       </div>
     </form>
