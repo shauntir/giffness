@@ -1,6 +1,6 @@
 
 <ion-view ng-controller="TrendingController as viewModel" view-title="Hot Gifs Right Now">
-  <ion-content class="padding">
+  <ion-content class="padding" ng-show="!$root.isOffline">
 
     <div ng-repeat="gif in viewModel.trendingGifs">
         <div class="list card">
@@ -52,5 +52,9 @@
       </div>
 
     <ion-infinite-scroll on-infinite="getMoreGifs()"></ion-infinite-scroll>
+  </ion-content>
+
+  <ion-content class="padding" ng-show="$root.isOffline">
+    <p>Offline</p>
   </ion-content>
 </ion-view>

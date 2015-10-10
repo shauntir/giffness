@@ -1,6 +1,6 @@
 
 <ion-view ng-controller="RandomController as viewModel" view-title="Get a Random Gif">
-  <ion-content class="padding">
+  <ion-content class="padding" ng-show="!$root.isOffline">
 
       <div class="list card">
         <div class="item item-positive item-divider align-text-center">
@@ -27,4 +27,9 @@
         </div>
       </div>
   </ion-content>
+
+  <ion-content class="padding" ng-show="$root.isOffline">
+    <p>Offline</p>
+  </ion-content>
+
 </ion-view>

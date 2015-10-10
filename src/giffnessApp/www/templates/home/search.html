@@ -1,6 +1,6 @@
 
 <ion-view ng-controller="SearchController as viewModel" view-title="Search Gifs">
-  <ion-content class="padding">
+  <ion-content class="padding" ng-show="!$root.isOffline">
     <form ng-submit="viewModel.searchGifs(searchCriteria)">
       <div class="list list-inset">
           <label class="item item-input">
@@ -66,5 +66,9 @@
         </div>
     </div>
     <button class="button button-full button-large button-dark icon-right ion-chevron-right" type="button" ng-show="hasSearch" ng-click="viewModel.getMoreGifs(searchCriteria)">Load More</button>
+  </ion-content>
+
+  <ion-content class="padding" ng-show="$root.isOffline">
+    <p>Offline</p>
   </ion-content>
 </ion-view>

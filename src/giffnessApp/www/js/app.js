@@ -7,7 +7,22 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('giffnessApp', ['ionic', 'ngCordova'])
 
-.run(function($ionicPlatform, $ionicPopup) {
+.run(function($ionicPlatform, $ionicPopup, $rootScope) {
+  var hasOfflineCheckRun = false;
+  var noConnectionPopup = function() {
+    $ionicPopup.confirm({
+        title: "No Internet Connection",
+        content: "For viewing awesome gifs you need to have an internet connection.",
+        okText: "Continue",
+        cancelText: "Exit"
+    })
+    .then(function(result) {
+        if(!result) {
+            ionic.Platform.exitApp();
+        }
+    });
+  };
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,18 +37,26 @@ angular.module('giffnessApp', ['ionic', 'ngCordova'])
     //Check for internet connection
     $ionicPlatform.ready(function() {
       if(window.Connection) {
-          if(navigator.connection.type == Connection.NONE) {
-              $ionicPopup.confirm({
-                  title: "No Internet Connection",
-                  content: "For viewing awesome you need to have an internet connection."
-              })
-              .then(function(result) {
-                  if(!result) {
-                      ionic.Platform.exitApp();
-                  }
-              });
-          }
+        if(navigator.connection.type == Connection.NONE) {
+          hasOfflineCheckRun = true;
+          $rootScope.isOffline = true;
+          noConnectionPopup();
+        }
       }
+
+      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
+        if (!hasOfflineCheckRun) {
+          $rootScope.isOffline = true;
+          noConnectionPopup();
+          window.location.reload(true);
+        }
+      });
+
+      $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+        $rootScope.isOffline = false;
+        window.location.reload(true);
+      });
+
     });
 
   });
