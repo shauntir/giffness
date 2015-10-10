@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('giffnessApp', ['ionic', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,24 @@ angular.module('giffnessApp', ['ionic', 'ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    //Check for internet connection
+    $ionicPlatform.ready(function() {
+      if(window.Connection) {
+          if(navigator.connection.type == Connection.NONE) {
+              $ionicPopup.confirm({
+                  title: "No Internet Connection",
+                  content: "For viewing awesome you need to have an internet connection."
+              })
+              .then(function(result) {
+                  if(!result) {
+                      ionic.Platform.exitApp();
+                  }
+              });
+          }
+      }
+    });
+
   });
 })
 
