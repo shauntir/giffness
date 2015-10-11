@@ -14,10 +14,12 @@
         </div>
 
         <div class="item item-assertive tabs tabs-secondary">
+          <!--
           <a class="tab-item align-text-center" href="#">
             <i class="icon ion-android-download ion-icon-white"></i>
           </a>
-          <a class="tab-item  align-text-center" ng-click="viewModel.shareGif(viewModel.randomGif)">
+        -->
+          <a class="tab-item  align-text-center" data-tap-disabled="true" ng-click="viewModel.shareGif(viewModel.randomGif)">
             <i class="icon ion-android-share-alt ion-icon-white"></i>
           </a>
           <a class="tab-item align-text-center" ng-click="viewModel.getAnotherRandomGif()">
