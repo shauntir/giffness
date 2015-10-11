@@ -13,7 +13,7 @@
 
     <div ng-show="noSearchResults" class="card">
       <div class="item item-text-wrap align-text-center">
-        No search results found for: "{{ searchCriteria }}". Please try a search something else.
+        No results found for: "{{ searchCriteria }}". Please try searching for something else.
       </div>
     </div>
     <div ng-repeat="gif in viewModel.Gifs">
@@ -69,6 +69,10 @@
   </ion-content>
 
   <ion-content class="padding" ng-show="$root.isOffline">
-    <p>Offline</p>
+    <div class="card">
+      <div class="item item-text-wrap align-text-center">
+        You are in offline mode. Please turn on wifi or your mobile data to view some awesome gifs.
+      </div>
+    </div>
   </ion-content>
 </ion-view>
