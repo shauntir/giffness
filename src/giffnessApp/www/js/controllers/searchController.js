@@ -29,7 +29,7 @@
       $scope.modal.show();
     };
 
-    viewModel.getMoreGifs = function(searchCriteria) {
+    $scope.getMoreGifs = function(searchCriteria) {
       if(searchCriteria && $scope.hasSearch === true) {
         offset += limit;
         giphyApiService
@@ -47,7 +47,10 @@
               $scope.noSearchResults = false;
             }
           });
+       $scope.$broadcast('scroll.infiniteScrollComplete'); 
+        
       }
+      
     };
 
     viewModel.searchGifs = function(searchCriteria) {

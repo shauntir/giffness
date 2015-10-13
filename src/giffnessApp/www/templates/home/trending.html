@@ -1,7 +1,7 @@
 
 <ion-view ng-controller="TrendingController as viewModel" view-title="Hot Gifs Right Now">
-  <ion-content class="padding" ng-show="!$root.isOffline">
-
+  <ion-content class="padding" ng-show="!$root.isOffline" overflow-scroll="true">
+  
     <div ng-repeat="gif in viewModel.trendingGifs">
         <div class="list card">
           <div class="item item-positive item-divider align-text-center" ng-click="showGifModal(gif)">
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-    <ion-infinite-scroll on-infinite="getMoreGifs()"></ion-infinite-scroll>
+    <ion-infinite-scroll distance="50%" on-infinite="getMoreGifs()"></ion-infinite-scroll>
   </ion-content>
 
   <ion-content class="padding" ng-show="$root.isOffline">
