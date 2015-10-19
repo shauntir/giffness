@@ -1,26 +1,33 @@
 (function() {
   'use strict';
 
-  angular.module('giffnessApp').factory('utilitiesHelperService', ['$cordovaSocialSharing', utilitiesHelperService]);
+  angular.module('giffnessApp').factory('utilitiesHelperService', ['$cordovaSocialSharing', '$ionicLoading', utilitiesHelperService]);
 
-  function utilitiesHelperService($cordovaSocialSharing) {
+  function utilitiesHelperService($cordovaSocialSharing, $ionicLoading) {
 
     function shareGif(gifModel) {
+      
+      $ionicLoading.show({
+        template: 'Sharing...'
+      });
+
       var gifUrl = gifModel.imageUrl;
       if(gifUrl === undefined)
       {
-        gifModel = gifModel.fixedWidthStillUrl;
+        gifUrl = gifModel.fixedWidthStillUrl;
       }
 
       ionic.Platform.ready(function() {
         $cordovaSocialSharing
             .share(null, "Hi! I just wanted to share this awesome gif with you.", gifUrl, null)
             .then(function(result) {
-              // Move along, nothing to see here.
+              $ionicLoading.hide();
             }, function(err) {
-              // An error occured. Show a message to the user
+              $ionicLoading.hide();
+              alert('Sorry, it seems this gif could not be shared!');
             });
       });
+      
     }
 
     return {
